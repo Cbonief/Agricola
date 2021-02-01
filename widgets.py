@@ -5,18 +5,22 @@ pygame.freetype.init()
 
 
 current_id = 0
-ui_elements = []
+ui_elements = {}
 
 
 # Enumerador de cores. Adicionar as que forem necessárias.
 class Color:
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
+    RED = (255, 0, 255)
+    GREEN = (0, 255, 0)
+    BLUE = (0, 0, 255)
 
 
 class Widget:
     def __init__(self, position, parent=None):
         global current_id
+        global ui_elements
         self.parent_id = parent.get_id()
         self.id = current_id
         current_id += 1
@@ -25,6 +29,7 @@ class Widget:
         if parent:
             self.global_position[0] += parent.position[0]
             self.global_position[1] += parent.position[1]
+        ui_elements[self.id] = self
 
     def get_parent_id(self):
         return self.parent_id
@@ -38,6 +43,7 @@ class Widget:
         self.global_position[1] = parent.position[1] + self.position[1]
 
     def get_parent(self):
+        global ui_elements
         return ui_elements[self.parent_id]
 
 

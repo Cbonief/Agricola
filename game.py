@@ -11,8 +11,7 @@ from widgets import PushButton, Text, Border, Panel, Color, ToggleButton, Window
 
 class Workplace:
     def __init__(self, image, title_panel, ):
-
-
+        x = 2
 
 # Classe do manager do Jogo.
 class Game:
